@@ -36,6 +36,17 @@
     "lodash": "^4.17.5"
   },
   "gitbook": {
-    "properties": {}
+    "properties": {
+      "parseGlossaryItems": {
+        "type": "boolean",
+        "default": true,
+        "description": "tells the plugin whether to apply tooltips to glossary items or not"
+      },
+      "trigger": {
+        "type": "string",
+        "default": "hover",
+        "description": "the event that triggers the tooltip. one of ['hover', 'click', 'focus']"
+      }
+    }
   }
 }

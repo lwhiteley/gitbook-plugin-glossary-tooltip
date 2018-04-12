@@ -13,23 +13,10 @@ function minifyHtml(content) {
         .replace(/\>[\t ]+$/g, ">");
 }
 
-describe('http verb', function () {
-    it('should create get by default', function () {
-        return tester.builder()
-            .withContent('{% httpverb %}/api/users/`id`{% endhttpverb %}')
-            .withLocalPlugin(localPluginPath)
-            .withBookJson({
-                gitbook: pkg.engines.gitbook,
-            })
-            .create()
-            .then(function (result) {
-                const html = minifyHtml(result[0].content);
-                expect(html).to.include('<span class="gbhv-verb gbhv-get"');
-            });
-    });
+describe('glossary tooltip', function () {
     it('should parse path text to markdown', function () {
         return tester.builder()
-            .withContent('{% httpverb %}/api/users/`id`{% endhttpverb %}')
+            .withContent('{% tooltip %}This is what an id looks like in code `id`{% endtooltip %}')
             .withLocalPlugin(localPluginPath)
             .withBookJson({
                 gitbook: pkg.engines.gitbook,
@@ -37,31 +24,7 @@ describe('http verb', function () {
             .create()
             .then(function (result) {
                 const html = minifyHtml(result[0].content);
-                expect(html).to.include('/api/users/<code>id</code>');
-            });
-    });
-
-    it('should add style to http verb', function () {
-        return tester.builder()
-            .withContent('{% httpverb %}/api/users/`id`{% endhttpverb %}')
-            .withLocalPlugin(localPluginPath)
-            .withBookJson({
-                gitbook: pkg.engines.gitbook,
-                pluginsConfig: {
-                    'http-verb': {
-                        styles: {
-                            get: {
-                                background: '#fff',
-                                color: '#000'
-                            }
-                        }
-                    }
-                }
-            })
-            .create()
-            .then(function (result) {
-                const html = minifyHtml(result[0].content);
-                expect(html).to.include('style="background: #fff; color: #000"');
+                expect(html).to.include('title="&lt;p&gt;This is what an id looks like in code&lt;code&gt;id&lt;/code&gt;&lt;/p&gt;"');
             });
     });
 

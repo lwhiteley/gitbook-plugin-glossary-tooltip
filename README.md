@@ -1,15 +1,17 @@
-GitBook Http Verb Plugin
+GitBook Glossary Tooltip Plugin
 ==============
 
-[![npm version](https://badge.fury.io/js/gitbook-plugin-http-verb.svg)](https://badge.fury.io/js/gitbook-plugin-http-verb)
-[![Build Status](https://travis-ci.org/lwhiteley/gitbook-plugin-http-verb.svg?branch=master)](https://travis-ci.org/lwhiteley/gitbook-plugin-codegroup)
+A plugin that uses [tooltipjs](https://popper.js.org/tooltip-examples.html) to automatically transform glossary items into tooltips instead of seeing the default browser title attribute on hover.
+
+[![npm version](https://badge.fury.io/js/gitbook-plugin-glossary-tooltip.svg)](https://badge.fury.io/js/gitbook-plugin-glossary-tooltip)
+[![Build Status](https://travis-ci.org/lwhiteley/gitbook-plugin-glossary-tooltip.svg?branch=master)](https://travis-ci.org/lwhiteley/gitbook-plugin-glossary-tooltip)
 
 ## Add Plugin
 
 book.json
 ```js
 {
-    "plugins": ["http-verb"]
+    "plugins": ["glossary-tooltip"]
 }
 ```
 
@@ -23,12 +25,8 @@ $ gitbook install
 book.json
 ```js
 "pluginsConfig": {
-    "http-verb":{
-        "styles": {
-            "get": {
-                "background": "#fff"
-            }
-        },
+    "glossary-tooltip":{
+        "parseGlossaryItems": false,
     }
 }
 ```
@@ -36,33 +34,30 @@ book.json
 ### Config Options:
 | Option | Description |
 | ------------- | ------------- |
-| styles {object} <br> **default**: `null` | an object map of styles for each http verb. see example above on how to define.  |
+| `parseGlossaryItems` {Boolean} <br> **default**: `true` | tells the plugin whether to apply tooltips to glossary items or not  |
+| `trigger` {string} <br> **default**: `hover` | the event that triggers the tooltip. one of ['hover', 'click', 'focus']  |
+
 
 ## Template
 
-<pre>
-<code>
-{% httpverb %} /api/users/`id` {% endhttpverb %}
-</code>
-</pre>
+You can also place your own tooltip in your markdown
 
 ##### Args
 
-`httpverb` takes an optional named/unnamed argument: 
+`tooltip` takes one required named/unnamed argument: 
 
-- `verb` (`string`): the http verb to display . eg. `get`, `put` and other [http verbs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). Default: `get`
+- `topic` (`string`): the http verb to display . This is required to display
 
-**examples**:
+**example**:
 <pre>
 <code>
-{% httpverb "post" %} /api/users/`id` {% endhttpverb %}
-{% httpverb verb="patch" %} /api/users/`id` {% endhttpverb %}
+{% tooltip "sample tooltip" %} sample tooltip test with **Emphasis** {% endtooltip %}
 </code>
 </pre>
 
 ### Sample output
 
-![output](https://i.imgur.com/mGn2ddi.png)
+![output](https://i.imgur.com/Ug5MEEf.png)
 
 Pull requests are welcome
 

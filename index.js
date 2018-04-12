@@ -1,6 +1,5 @@
-const get = require('lodash/get');
 const trim = require('lodash/trim');
-const toStyleString = require('to-style').string
+const get = require('lodash/get');
 
 function minifyHtml(content) {
     return content
@@ -16,6 +15,7 @@ module.exports = {
     website: {
         assets: './book',
         js: [
+            'https://unpkg.com/popper.js/dist/umd/popper.min.js',
             'https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js',
             'plugin.js'
         ],
@@ -26,6 +26,7 @@ module.exports = {
     book: {
         assets: './book',
         js: [
+            'https://unpkg.com/popper.js/dist/umd/popper.min.js',
             'https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js',
             'plugin.js'
         ],
@@ -47,18 +48,13 @@ module.exports = {
             process: function (block) {
                 const ctx = this;
                 const opts = ctx.book.config.get('pluginsConfig.glossary-tooltip');
-
-                const verb = trim(get(block, 'kwargs.verb', '') || get(block, 'args[0]', '') || 'get');
-                const style = toStyleString(get(opts, `styles.${verb}`));
+                const topic = trim(get(block, 'kwargs.topic', '') || get(block, 'args[0]', '') || 'get');
 
                 return this.renderBlock('markdown', trim(block.body || '')).then((str) => {
                     return minifyHtml(`
-                        <div class="gbgt-verbpath">
-                            <span class="gbgt-verb gbhv-${verb.toLowerCase()}"${style ? ` style="${style}"` : ''}>
-                                ${verb.toUpperCase()}
-                            </span>
-                            <span class="gbgt-path">${str}</span>
-                        </div>
+                        <a class="gbgt-tooltip" title="${str}">
+                            ${topic}
+                        </a>
                     `);
                 })
             }

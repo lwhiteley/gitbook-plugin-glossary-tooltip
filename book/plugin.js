@@ -6,6 +6,7 @@ require([
         var opts = {
             parseGlossaryItems: true,
             trigger: 'hover',
+            placement: 'top',
         };
         var selectors = '.gbgt-tooltip';
         var glossarySelector = '.glossary-term';
@@ -26,7 +27,7 @@ require([
                 title: title,
                 html: true,
                 trigger: /hover|click|focus/.test(opts.trigger) ? opts.trigger : 'hover',
-                placement: 'left',
+                placement: /top|left|bottom|right/.test(opts.placement) ? opts.placement : 'top',
                 modifiers: {
                     flip: {
                         behavior: ['left', 'bottom', 'top']

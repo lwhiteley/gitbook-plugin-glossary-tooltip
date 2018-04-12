@@ -46,6 +46,11 @@
         "type": "string",
         "default": "hover",
         "description": "the event that triggers the tooltip. one of ['hover', 'click', 'focus']"
+      },
+      "placement": {
+        "type": "string",
+        "default": "top",
+        "description": "placement of the tooltip relative to the trigger element. one of ['top', 'bottom', 'left', 'right']"
       }
     }
   }

@@ -36,6 +36,7 @@ book.json
 | ------------- | ------------- |
 | `parseGlossaryItems` {Boolean} <br> **default**: `true` | tells the plugin whether to apply tooltips to glossary items or not  |
 | `trigger` {string} <br> **default**: `hover` | the event that triggers the tooltip. one of ['hover', 'click', 'focus']  |
+| `placement` {string} <br> **default**: `top` | placement of the tooltip relative to the trigger element. one of ['top', 'bottom', 'left', 'right']" |
 
 
 ## Template

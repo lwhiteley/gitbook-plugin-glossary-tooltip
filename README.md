@@ -47,7 +47,7 @@ You can also place your own tooltip in your markdown
 
 `tooltip` takes one required named/unnamed argument: 
 
-- `topic` (`string`): the http verb to display . This is required to display text in the tooltip trigger element.
+- `topic` (`string`): The text to display in the tooltip trigger element.
 
 **example**:
 <pre>
